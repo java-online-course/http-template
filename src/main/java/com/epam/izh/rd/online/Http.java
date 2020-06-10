@@ -1,29 +1,29 @@
 package com.epam.izh.rd.online;
 
-import com.epam.izh.rd.online.entity.characteristics.Stats;
-import com.epam.izh.rd.online.uitl.Converter;
+import com.epam.izh.rd.online.controller.GameController;
+import com.epam.izh.rd.online.entity.Pokemon;
+import com.epam.izh.rd.online.service.PokemonFetchingServiceImpl;
+import com.epam.izh.rd.online.сonnection.PokeApiResponse;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import java.util.Scanner;
+import java.util.concurrent.Callable;
+
 
 public class Http {
-    public static void main(String[] args) throws IOException {
-        URL url = new URL("https://pokeapi.co/api/v2/pokemon/ditto");
-        URLConnection urlConnection = url.openConnection();
+    public static void main(String[] args) throws Exception {
+       Pokemon pokemonOne = new PokemonThread().call();
+       Pokemon pokemonTwo = new PokemonThread().call();
+       GameController gameController = new GameController();
+       Pokemon winnerPokemon = gameController.doBattle(pokemonOne, pokemonTwo);
+    }
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
+    public static class PokemonThread implements Callable<Pokemon> {
+
+        @Override
+        public Pokemon call() {
+            Scanner scanner = new Scanner(System.in);
+            return new PokemonFetchingServiceImpl(new PokeApiResponse()).fetchByName(scanner.nextLine());
+
         }
-        System.out.println(stringBuilder.toString());
-        Converter<Stats> converter = new Converter<>();
-        Stats stats = converter.convertFromJson(stringBuilder.toString(), Stats.class);
-        System.out.println("____________________________");
-        System.out.println(stats.toString());
     }
 }

@@ -1,7 +1,7 @@
 package com.epam.izh.rd.online.uitl;
 
-import com.epam.izh.rd.online.factory.ObjectMapperFactory;
-import com.epam.izh.rd.online.factory.ObjectMapperFactoryImpl;
+import com.epam.izh.rd.online.factory.mapperFactory.ObjectMapperFactory;
+import com.epam.izh.rd.online.factory.mapperFactory.ObjectMapperFactoryImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;

@@ -10,15 +10,18 @@ public class Stats {
     private String name;
     private int id;
     private List<Stat> statsList;
+    private Sprites sprites;
 
     @JsonCreator
     public Stats(@JsonProperty("id") int id,
                  @JsonProperty("name") String name,
-                 @JsonProperty("stats") List<Stat> statsList) {
+                 @JsonProperty("stats") List<Stat> statsList,
+                 @JsonProperty("sprites") Sprites sprites) {
 
         this.id = id;
         this.name = name;
         this.statsList = statsList;
+        this.sprites = sprites;
     }
 
     public String getName() {
@@ -45,12 +48,46 @@ public class Stats {
         this.statsList = statsList;
     }
 
+    public Sprites getSprites() {
+        return sprites;
+    }
+
+    public void setSprites(Sprites sprites) {
+        this.sprites = sprites;
+    }
+
     @Override
     public String toString() {
         return "Stats{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
                 ", statsList=" + statsList +
+                ", sprites=" + sprites +
                 '}';
+    }
+
+    public static class Sprites {
+
+        private String urlPokemonImage;
+
+        @JsonCreator
+        public Sprites(@JsonProperty("front_default") String urlPokemonImage) {
+            this.urlPokemonImage = urlPokemonImage;
+        }
+
+        public String getUrlPokemonImage() {
+            return urlPokemonImage;
+        }
+
+        public void setUrlPokemonImage(String urlPokemonImage) {
+            this.urlPokemonImage = urlPokemonImage;
+        }
+
+        @Override
+        public String toString() {
+            return "Sprites{" +
+                    "urlPokemonImage='" + urlPokemonImage + '\'' +
+                    '}';
+        }
     }
 }
