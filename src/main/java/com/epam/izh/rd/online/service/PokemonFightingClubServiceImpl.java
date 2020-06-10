@@ -1,6 +1,7 @@
 package com.epam.izh.rd.online.service;
 
 import com.epam.izh.rd.online.entity.Pokemon;
+import com.epam.izh.rd.online.uitl.ImagePokemon;
 
 public class PokemonFightingClubServiceImpl implements PokemonFightingClubService {
 
@@ -44,7 +45,8 @@ public class PokemonFightingClubServiceImpl implements PokemonFightingClubServic
     @Override
     public void showWinner(Pokemon winner) {
         System.out.println("Победитель: " + winner.getPokemonName());
-
+        ImagePokemon imagePokemon = new ImagePokemon();
+        imagePokemon.saveWinnerImage(winner);
     }
 
     @Override
