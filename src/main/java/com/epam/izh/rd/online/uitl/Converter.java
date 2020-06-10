@@ -7,9 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-
-
 public class Converter<T> {
 
     public T convertFromJson(String json, Class<T> clazz) throws JsonProcessingException {

@@ -3,6 +3,8 @@ package com.epam.izh.rd.online.service;
 import com.epam.izh.rd.online.entity.Pokemon;
 import com.epam.izh.rd.online.uitl.ImagePokemon;
 
+import java.io.IOException;
+
 public class PokemonFightingClubServiceImpl implements PokemonFightingClubService {
 
 
@@ -25,7 +27,6 @@ public class PokemonFightingClubServiceImpl implements PokemonFightingClubServic
                 doDamage(p1, p2);
                 queryMove = false;
                 if (p2.getHp() <= 0) {
-                    showWinner(p1);
                     winnerPokemon = p1;
                     break;
                 }
@@ -33,7 +34,6 @@ public class PokemonFightingClubServiceImpl implements PokemonFightingClubServic
                 doDamage(p2, p1);
                 queryMove = true;
                 if (p1.getHp() <= 0 ) {
-                    showWinner(p2);
                     winnerPokemon = p2;
                     break;
                 }
@@ -43,7 +43,7 @@ public class PokemonFightingClubServiceImpl implements PokemonFightingClubServic
     }
 
     @Override
-    public void showWinner(Pokemon winner) {
+    public void showWinner(Pokemon winner) throws IOException {
         System.out.println("Победитель: " + winner.getPokemonName());
         ImagePokemon imagePokemon = new ImagePokemon();
         imagePokemon.saveWinnerImage(winner);

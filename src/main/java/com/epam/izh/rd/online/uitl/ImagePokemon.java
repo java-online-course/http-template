@@ -9,14 +9,14 @@ import java.io.*;
 
 public class ImagePokemon {
 
-    public void saveWinnerImage(Pokemon winner) {
-        String pathImage = "src/winnerPokemon.png";
+    public void saveWinnerImage(Pokemon winner) throws IOException {
+        String pathImage = "src/"+ winner.getPokemonName() + ".png";
         PokemonFetchingService pokemonFetchingService = new PokemonFetchingServiceImpl(new PokeApiResponse());
         byte[] pokemonImage = pokemonFetchingService.getPokemonImage(winner.getPokemonName());
         try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(pathImage))) {
                outputStream.write(pokemonImage);
         } catch (IOException exception) {
-            System.out.println("Ошибка - " + exception);
+            exception.printStackTrace();
         }
     }
 }

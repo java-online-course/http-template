@@ -5,18 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class Stats {
+public class AllStat {
 
-    private String name;
-    private int id;
-    private List<Stat> statsList;
-    private Sprites sprites;
+    private final String name;
+    private final int id;
+    private final List<Stat> statsList;
+    private final Sprites sprites;
 
     @JsonCreator
-    public Stats(@JsonProperty("id") int id,
-                 @JsonProperty("name") String name,
-                 @JsonProperty("stats") List<Stat> statsList,
-                 @JsonProperty("sprites") Sprites sprites) {
+    public AllStat(@JsonProperty("id") int id,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("stats") List<Stat> statsList,
+                   @JsonProperty("sprites") Sprites sprites) {
 
         this.id = id;
         this.name = name;
@@ -28,32 +28,16 @@ public class Stats {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<Stat> getStatsList() {
         return statsList;
     }
 
-    public void setStatsList(List<Stat> statsList) {
-        this.statsList = statsList;
-    }
-
     public Sprites getSprites() {
         return sprites;
-    }
-
-    public void setSprites(Sprites sprites) {
-        this.sprites = sprites;
     }
 
     @Override
@@ -68,7 +52,7 @@ public class Stats {
 
     public static class Sprites {
 
-        private String urlPokemonImage;
+        private final String urlPokemonImage;
 
         @JsonCreator
         public Sprites(@JsonProperty("front_default") String urlPokemonImage) {
@@ -79,9 +63,6 @@ public class Stats {
             return urlPokemonImage;
         }
 
-        public void setUrlPokemonImage(String urlPokemonImage) {
-            this.urlPokemonImage = urlPokemonImage;
-        }
 
         @Override
         public String toString() {

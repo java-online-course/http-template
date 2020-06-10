@@ -15,6 +15,7 @@ public class Http {
        Pokemon pokemonTwo = new PokemonThread().call();
        GameController gameController = new GameController();
        Pokemon winnerPokemon = gameController.doBattle(pokemonOne, pokemonTwo);
+       gameController.showWinner(winnerPokemon);
     }
 
     public static class PokemonThread implements Callable<Pokemon> {

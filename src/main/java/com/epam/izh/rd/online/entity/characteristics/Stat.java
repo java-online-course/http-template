@@ -19,16 +19,9 @@ public class Stat {
         return baseStat;
     }
 
-    public void setBaseStat(int baseStat) {
-        this.baseStat = baseStat;
-    }
 
     public StatName getStat() {
         return statName;
-    }
-
-    public void setStat(StatName statName) {
-        this.statName = statName;
     }
 
     @Override
@@ -45,21 +38,6 @@ public class Stat {
         @JsonCreator
         public StatName(@JsonProperty("name") String name) {
             this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return "StatName{" +
-                    "name='" + name + '\'' +
-                    '}';
         }
     }
 }
