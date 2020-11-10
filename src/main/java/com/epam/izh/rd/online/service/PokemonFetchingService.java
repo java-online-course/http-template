@@ -14,7 +14,7 @@ public interface PokemonFetchingService {
      * @return сущность Pokemon
      * @throws IllegalArgumentException при условии, если имя покемона указано неверно
      */
-    Pokemon fetchByName(String name) throws IllegalArgumentException, IOException;
+    Pokemon fetchByName(String name) throws IllegalArgumentException;
 
     /**
      * @param name - имя покемона

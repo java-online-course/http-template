@@ -17,10 +17,13 @@ public class Http {
         PokemonFetchingService pokemonFetchingService = ctx.getBean(PokemonFetchingService.class);
         PokemonFightingClubService pokemonFightingClubService = ctx.getBean(PokemonFightingClubService.class);
 
-        Pokemon pokemon1 = pokemonFetchingService.fetchByName("13");
-        Pokemon pokemon2 = pokemonFetchingService.fetchByName("14");
+        Pokemon pokemon1 = pokemonFetchingService.fetchByName("pikachu");
+        Pokemon pokemon2 = pokemonFetchingService.fetchByName("slowpoke");
+        System.out.println("Сражаются " + pokemon1.getPokemonName() + " и " + pokemon2.getPokemonName());
 
         Pokemon winner = pokemonFightingClubService.doBattle(pokemon1, pokemon2);
+        System.out.println("Победил " + winner.getPokemonName());
+
         winner.setImage(pokemonFetchingService.getPokemonImage(winner.getPokemonName()));
         pokemonFightingClubService.showWinner(winner);
 
