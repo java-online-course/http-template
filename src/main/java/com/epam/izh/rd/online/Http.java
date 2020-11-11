@@ -7,11 +7,9 @@ import com.epam.izh.rd.online.service.PokemonFightingClubService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.io.IOException;
-
 public class Http {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfiguration.class);
 
         PokemonFetchingService pokemonFetchingService = ctx.getBean(PokemonFetchingService.class);
@@ -26,7 +24,5 @@ public class Http {
 
         winner.setImage(pokemonFetchingService.getPokemonImage(winner.getPokemonName()));
         pokemonFightingClubService.showWinner(winner);
-
-
     }
 }

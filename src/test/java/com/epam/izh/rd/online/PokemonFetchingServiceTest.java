@@ -6,7 +6,12 @@ import com.epam.izh.rd.online.service.PokemonFetchingServiceImpl;
 import com.epam.izh.rd.online.service.PokemonFightingClubService;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,33 +34,38 @@ public class PokemonFetchingServiceTest {
     WireMockConfiguration config = new WireMockConfiguration();
     WireMockServer wireMockServer = new WireMockServer(config.withRootDirectory("src/test/resources/server_path/").port(8080));
 
+    @Before
+    public void setup(){
+        wireMockServer.start();
+    }
+
+    @After
+    public void after() {
+        wireMockServer.stop();
+    }
+
+
     @Test
     public void testConvertJsonToObject() {
-        wireMockServer.start();
         Pokemon pokemon1 = new Pokemon(25L, "pikachu", (short) 35, (short) 55, (short) 40, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png");
         Pokemon pokemon2 = pokemonFetchingService.fetchByName("pikachu.json");
         assertEquals(pokemon1, pokemon2);
-        wireMockServer.stop();
     }
 
     @Test
     public void testBattle() {
-        wireMockServer.start();
         Pokemon pokemon1 = pokemonFetchingService.fetchByName("pikachu.json");
         Pokemon pokemon2 = pokemonFetchingService.fetchByName("ditto.json");
         Pokemon winner = pokemonFightingClubService.doBattle(pokemon1, pokemon2);
 
         assertEquals(winner, pokemon1);
-        wireMockServer.stop();
     }
 
     @Test
     public void testLoadImg() {
-        wireMockServer.start();
         Pokemon pokemon = new Pokemon(132L, "ditto", (short) 35, (short) 55, (short) 40, "");
         pokemon.setImage(pokemonFetchingService.getPokemonImage("ditto.json"));
         assertNotNull(pokemon.getImage());
-        wireMockServer.stop();
     }
 
 }
