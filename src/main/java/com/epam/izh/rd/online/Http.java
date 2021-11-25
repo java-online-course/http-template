@@ -17,9 +17,9 @@ public class Http {
         byte[] bytesPikachu = servicePokemon.getPokemonImage("pikachu");
         pokemonFightingClubService.showWinner(pokemonPikachu);
 
-
-        Pokemon winner = pokemonFightingClubService.doBattle(pokemonSlowpoke, pokemonPikachu);
-        pokemonFightingClubService.showWinner(winner);
-        System.out.println(winner);
+//
+//        Pokemon winner = pokemonFightingClubService.doBattle(pokemonSlowpoke, pokemonPikachu);
+//        pokemonFightingClubService.showWinner(winner);
+//        System.out.println(winner);
     }
 }

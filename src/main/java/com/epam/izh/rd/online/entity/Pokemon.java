@@ -77,7 +77,7 @@ public class Pokemon {
     }
 
     @Data
-    @AllArgsConstructor
+    @NoArgsConstructor
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Sprite {
 

@@ -74,8 +74,8 @@ public class PokemonFightingClubServiceTest {
     @Test
     public void Test_ShowWinner() throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream streamPikaImg = classloader.getResourceAsStream("pika.png");
-        InputStream streamSlowImg = classloader.getResourceAsStream("slow.png");
+        InputStream streamPikaImg = classloader.getResourceAsStream("__files/pikachu.png");
+        InputStream streamSlowImg = classloader.getResourceAsStream("__files/slowpoke.png");
         byte[] newWinnerImage = null;
         File fileWinnerImage = null;
 
