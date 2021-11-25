@@ -2,6 +2,9 @@ package com.epam.izh.rd.online.service;
 
 import com.epam.izh.rd.online.entity.Pokemon;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 /**
  * Сервис по загрузке данных покемонов из внешнего сервиса
  */
@@ -12,12 +15,12 @@ public interface PokemonFetchingService {
      * @return сущность Pokemon
      * @throws IllegalArgumentException при условии, если имя покемона указано неверно
      */
-    Pokemon fetchByName(String name) throws IllegalArgumentException;
+    Pokemon fetchByName(String name) throws IllegalArgumentException, IOException;
 
     /**
      * @param name - имя покемона
      * @return картинка покемона в виде массива байтов
      * @throws IllegalArgumentException при условии, если имя покемона указано неверно
      */
-    byte[] getPokemonImage(String name) throws IllegalArgumentException;
+    byte[] getPokemonImage(String name) throws IllegalArgumentException, IOException;
 }
