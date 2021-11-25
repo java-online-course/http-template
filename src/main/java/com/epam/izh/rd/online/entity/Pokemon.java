@@ -79,7 +79,7 @@ public class Pokemon {
     @Data
     @AllArgsConstructor
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class Sprite {
+    public static class Sprite {
 
         private URL imageUrl;
 

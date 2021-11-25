@@ -3,6 +3,7 @@ package com.epam.izh.rd.online.service;
 import com.epam.izh.rd.online.entity.Pokemon;
 import com.epam.izh.rd.online.factory.ObjectMapperFactoryImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -22,7 +23,7 @@ public class PokemonFetchingServiceImpl implements PokemonFetchingService{
         HttpURLConnection httpUrlConnection = null;
         try {
             httpUrlConnection = (HttpURLConnection) url.openConnection();
-            httpUrlConnection.addRequestProperty("User-agent", "");
+            httpUrlConnection.addRequestProperty("User-Agent", "User");
             return httpUrlConnection;
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,6 +87,5 @@ public class PokemonFetchingServiceImpl implements PokemonFetchingService{
             e.printStackTrace();
             throw new IOException("failed while reading bytes from file");
         }
-
-    }
+        }
 }

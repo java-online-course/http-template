@@ -13,6 +13,7 @@
         <junit.jupiter.version>5.5.2</junit.jupiter.version>
         <fasterxml.jackson.version>2.10.1</fasterxml.jackson.version>
         <jackson.version>2.13.0</jackson.version>
+        <wiremock-jre8>2.31.0</wiremock-jre8>
     </properties>
 
     <dependencies>
@@ -20,6 +21,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>${wiremock-jre8}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -41,6 +48,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

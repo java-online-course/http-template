@@ -24,7 +24,7 @@ public class Stats {
     @Data
     @NoArgsConstructor
     @JsonIgnoreProperties(ignoreUnknown = true)
-    protected static class Stat {
+    public static class Stat {
         private String name;
 
         @JsonCreator
