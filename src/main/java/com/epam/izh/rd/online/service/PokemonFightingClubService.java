@@ -2,6 +2,8 @@ package com.epam.izh.rd.online.service;
 
 import com.epam.izh.rd.online.entity.Pokemon;
 
+import java.io.IOException;
+
 /**
  * Сервис по проведению боёв между покемонами
  */
@@ -19,7 +21,7 @@ public interface PokemonFightingClubService {
      * Метод загружает картинку победителя в корень проекта
      * @param winner победитель
      */
-    void showWinner(Pokemon winner);
+    void showWinner(Pokemon winner) throws IOException;
 
     /**
      * Метод высчитывает урон покемона from и вычитает его из hp покемона to
