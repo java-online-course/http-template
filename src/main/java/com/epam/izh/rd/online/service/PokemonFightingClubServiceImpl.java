@@ -26,22 +26,18 @@ public class PokemonFightingClubServiceImpl implements PokemonFightingClubServic
      */
     @Override
     public Pokemon doBattle(Pokemon p1, Pokemon p2) {
-        Pokemon firstPokemon = null;
-        Pokemon secondPokemon = null;
-        if (p1.getPokemonId() > p2.getPokemonId()) {
-            firstPokemon = p1;
-            secondPokemon = p2;
-        } else {
-            firstPokemon = p2;
-            secondPokemon = p1;
+        Pokemon attacking = p1.getPokemonId() > p2.getPokemonId() ? p1 : p2;
+        Pokemon defensing = p1.getPokemonId() < p2.getPokemonId() ? p1 : p2;
+
+        while (p1.getHp() >= 0 && p2.getHp() >= 0) {
+            doDamage(attacking, defensing);
+
+            Pokemon temp = attacking;
+            attacking = defensing;
+            defensing = temp;
         }
 
-        while (firstPokemon.getHp() >= 0 && secondPokemon.getHp() >= 0) {
-            doDamage(firstPokemon, secondPokemon);
-            doDamage(secondPokemon, firstPokemon);
-        }
-
-        return firstPokemon.getHp() <= 0 ? secondPokemon : firstPokemon;
+        return p1.getHp() <= 0 ? p2 : p1;
     }
 
     /**
@@ -53,7 +49,7 @@ public class PokemonFightingClubServiceImpl implements PokemonFightingClubServic
     public void showWinner(Pokemon winner) throws IOException {
         byte[] arrayWinnersImage = pokemonFetchingService.getPokemonImage(winner.getPokemonName());
 
-        try(ByteArrayInputStream bis = new ByteArrayInputStream(arrayWinnersImage);) {
+        try(ByteArrayInputStream bis = new ByteArrayInputStream(arrayWinnersImage)) {
             BufferedImage bImage2 = ImageIO.read(bis);
             ImageIO.write(bImage2, "png", new File("winner.png") );
         } catch (IOException e) {

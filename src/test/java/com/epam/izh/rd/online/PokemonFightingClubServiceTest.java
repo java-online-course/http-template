@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -54,7 +55,7 @@ public class PokemonFightingClubServiceTest {
     }
 
     @Test
-    public void Test_DoBattle() {
+    public void TestDoBattle() {
         assertThat(secondPokemon, CoreMatchers.is(this.pokemonFightingClubService.doBattle(firstPokemon,secondPokemon)));
         assertThat(secondPokemon, CoreMatchers.is(this.pokemonFightingClubService.doBattle(secondPokemon,firstPokemon)));
         assertThat(fetchingSecondPokemon, CoreMatchers.is(this.pokemonFightingClubService.doBattle(fetchingFirstPokemon,fetchingSecondPokemon)));
@@ -62,7 +63,7 @@ public class PokemonFightingClubServiceTest {
     }
 
     @Test
-    public void Test_DoDamage() {
+    public void TestDoDamage() {
         pokemonFightingClubService.doDamage(firstPokemon, secondPokemon);
 
         assertEquals(70, secondPokemon.getHp());
@@ -72,15 +73,15 @@ public class PokemonFightingClubServiceTest {
     }
 
     @Test
-    public void Test_ShowWinner() throws IOException {
+    public void TestShowWinner() throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream streamPikaImg = classloader.getResourceAsStream("__files/pikachu.png");
         InputStream streamSlowImg = classloader.getResourceAsStream("__files/slowpoke.png");
         byte[] newWinnerImage = null;
         File fileWinnerImage = null;
 
-        byte[] bytesPikaImg = IOUtils.toByteArray(streamPikaImg);
-        byte[] bytesSlowImg = IOUtils.toByteArray(streamSlowImg);
+        byte[] bytesPikaImg = IOUtils.toByteArray(Objects.requireNonNull(streamPikaImg));
+        byte[] bytesSlowImg = IOUtils.toByteArray(Objects.requireNonNull(streamSlowImg));
 
         pokemonFightingClubService.showWinner(firstPokemon);
 

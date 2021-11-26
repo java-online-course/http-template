@@ -3,7 +3,6 @@ package com.epam.izh.rd.online.service;
 import com.epam.izh.rd.online.entity.Pokemon;
 import com.epam.izh.rd.online.factory.ObjectMapperFactoryImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;

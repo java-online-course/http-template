@@ -4,13 +4,11 @@ import com.epam.izh.rd.online.entity.Pokemon;
 import com.epam.izh.rd.online.service.PokemonFetchingService;
 import com.epam.izh.rd.online.service.PokemonFetchingServiceImpl;
 import com.github.tomakehurst.wiremock.WireMockServer;
-import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,7 +52,7 @@ public class PokemonFetchingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"pikachu", "slowpoke"})
-    public void Test_FetchByName(String name) throws IOException {
+    public void TestByFetchByName(String name) throws IOException {
 
         Pokemon pokemon = pokemonFetchingService.fetchByName(name);
 
@@ -63,7 +61,7 @@ public class PokemonFetchingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"pikachu", "slowpoke"})
-    public void Test_FetchImageByName(String name) throws IOException {
+    public void TestByFetchImageByName(String name) throws IOException {
 
         byte[] byteImage = pokemonFetchingService.getPokemonImage(name);
 
