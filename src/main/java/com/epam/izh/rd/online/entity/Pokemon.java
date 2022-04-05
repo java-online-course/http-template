@@ -1,10 +1,21 @@
 package com.epam.izh.rd.online.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+import java.util.List;
+
+
 /**
  * Покемон. Поля должны заполняться из JSON, который возвратит внешний REST-service
  * Для маппинга значений из массива stats рекомендуется использовать отдельный класс Stat и аннотацию @JsonCreator
  */
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pokemon {
+
 
     /**
      * Уникальный идентификатор, маппится из поля pokemonId
@@ -31,4 +42,18 @@ public class Pokemon {
      */
     private short defense;
 
+    private String imageUrl;
+
+
+    @JsonCreator
+    public Pokemon( @JsonProperty("id") long pokemonId, @JsonProperty("name") String pokemonName,
+                    @JsonProperty("stats") List<Stat> stat, @JsonProperty("sprites") Sprite sprite) {
+        this.pokemonId = pokemonId;
+        this.pokemonName = pokemonName;
+        this.hp = stat.get(0).getBaseStat();
+        this.attack = stat.get(1).getBaseStat();
+        this.defense = stat.get(2).getBaseStat();
+        this.imageUrl = sprite.getImageUrl();
+
+    }
 }
