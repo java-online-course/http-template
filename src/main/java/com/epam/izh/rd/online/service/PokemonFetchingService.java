@@ -1,23 +1,28 @@
 package com.epam.izh.rd.online.service;
 
-import com.epam.izh.rd.online.entity.Pokemon;
 
-/**
- * Сервис по загрузке данных покемонов из внешнего сервиса
- */
-public interface PokemonFetchingService {
+import com.epam.izh.rd.online.factory.ObjectMapperFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-    /**
-     * @param name - имя покемона
-     * @return сущность Pokemon
-     * @throws IllegalArgumentException при условии, если имя покемона указано неверно
-     */
-    Pokemon fetchByName(String name) throws IllegalArgumentException;
+public class PokemonFetchingService implements ObjectMapperFactory  {
 
-    /**
-     * @param name - имя покемона
-     * @return картинка покемона в виде массива байтов
-     * @throws IllegalArgumentException при условии, если имя покемона указано неверно
-     */
-    byte[] getPokemonImage(String name) throws IllegalArgumentException;
+  private PokemonFetchingService() {
+    ObjectMapper objectMapper = getObjectMapper();
+  }
+
+  private static class PokemonFetchingServiceHolder {
+
+    public static final PokemonFetchingService POKEMON_FETCHING_SERVICE_HOLDER_INSTANCE =
+        new PokemonFetchingService();
+  }
+
+  public static PokemonFetchingService getInstance() {
+    return PokemonFetchingServiceHolder.POKEMON_FETCHING_SERVICE_HOLDER_INSTANCE;
+  }
+
+  @Override
+  public ObjectMapper getObjectMapper() {
+    return new ObjectMapper();
+  }
+
 }
